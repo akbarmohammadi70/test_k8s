@@ -19,3 +19,4 @@ urllib3==2.2.3
 uvicorn==0.32.0
 geoip2
 psycopg2
+prometheus-fastapi-instrumentator
