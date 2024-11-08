@@ -963,23 +963,10 @@ kube-state-metrics:
               regex: (uid|container_id|image_id)
       jobLabel: app.kubernetes.io/name
 
-
-appMetrics:
-  enabled: true
-  vmScrape:
-    enabled: true
-    spec:
-      selector:
-        matchLabels:
-          app: app
-      namespaceSelector:
-        matchNames: ["default"]  
-      endpoints:
-        - port: "8000"
-          path: /metrics
-          interval: "1s"
-          scrapeTimeout: "5s"
-
+scrapeConfigs:
+  - job_name: 'external-app-metrics'
+    static_configs:
+      - targets: ['5.34.207.70:30005']
 
 # -- Component scraping the kubelets
 kubelet:
