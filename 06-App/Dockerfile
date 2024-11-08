@@ -20,7 +20,7 @@ WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 COPY ./app/ .
-COPY GeoLite2-Country.mmdb /app/GeoLite2-Country.mmdb
+COPY ./GeoLite2-Country.mmdb /app/GeoLite2-Country.mmdb
 RUN adduser --disabled-password appuser
 USER appuser
 EXPOSE 8000
