@@ -4,6 +4,7 @@ import geoip2.database
 import psycopg2
 from psycopg2 import sql
 import os
+from pydantic import BaseModel  # Add this import
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -88,4 +89,5 @@ async def startup():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database initialization error: {e}")
 
-
+# Run the FastAPI app using Uvicorn
+# uvicorn main:app --reload
