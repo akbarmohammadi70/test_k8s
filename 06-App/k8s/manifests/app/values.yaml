@@ -1,12 +1,12 @@
 replicaCount: 1
-
+name: app
 image:
   repository: akbar1370/test_k8s:latest
   pullPolicy: Always
   tag: latest
 
 service:
-  name: geoip-service
+  name: app
   type: NodePort
   port: 80
   targetPort: 8000
