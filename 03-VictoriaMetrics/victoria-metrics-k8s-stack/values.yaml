@@ -953,6 +953,8 @@ kube-state-metrics:
         matchLabels:
           app.kubernetes.io/name: '{{ include "kube-state-metrics.name" (index .Subcharts "kube-state-metrics") }}'
           app.kubernetes.io/instance: '{{ include "vm.release" . }}'
+      namespaceSelector: 
+        any: true 
       endpoints:
         - port: http
           honorLabels: true
@@ -960,6 +962,24 @@ kube-state-metrics:
             - action: labeldrop
               regex: (uid|container_id|image_id)
       jobLabel: app.kubernetes.io/name
+
+
+appMetrics:
+  enabled: true
+  vmScrape:
+    enabled: true
+    spec:
+      selector:
+        matchLabels:
+          app: app
+      namespaceSelector:
+        matchNames: ["default"]  
+      endpoints:
+        - port: "8000"
+          path: /metrics
+          interval: "1s"
+          scrapeTimeout: "5s"
+
 
 # -- Component scraping the kubelets
 kubelet:
@@ -1032,6 +1052,9 @@ kubeApiServer:
         matchLabels:
           component: apiserver
           provider: kubernetes
+
+
+
 
 # Component scraping the kube controller manager
 kubeControllerManager:
