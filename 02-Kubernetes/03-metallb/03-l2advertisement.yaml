@@ -1,0 +1,15 @@
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: example
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - first-pool
+  nodeSelectors:
+  - matchLabels:
+      kubernetes.io/hostname: node2
+  - matchLabels:
+      kubernetes.io/hostname: node3
+  interfaces:
+  - eth0

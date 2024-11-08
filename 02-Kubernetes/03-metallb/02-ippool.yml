@@ -1,0 +1,11 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: first-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 5.34.207.70/32
+  - 5.34.204.161/32
+  autoAssign: true
+  avoidBuggyIPs: false

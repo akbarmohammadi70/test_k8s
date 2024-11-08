@@ -1,0 +1,29 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: acid-minimal-cluster
+spec:
+  teamId: "acid"
+  volume:
+    size: 5Gi
+  numberOfInstances: 2
+  users:
+    postgres: # database owner
+    - superuser
+    - createdb
+  databases:
+    app: postgres  # dbname: owner
+  postgresql:
+    version: "16"
+    parameters:
+      max_connections: "2000"
+  preparedDatabases:
+    bar: {}
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 1024Mi
+    limits:
+      cpu: 2000m
+      memory: 2048Mi
+
