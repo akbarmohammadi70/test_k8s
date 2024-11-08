@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: akbar1370/test_k8s:latest
+  pullPolicy: Always
+  tag: latest
+
+service:
+  name: geoip-service
+  type: NodePort
+  port: 80
+  targetPort: 8000
+  nodePort: 30005 
+
+postgres:
+  host: acid-minimal-cluster.default.svc.cluster.local
+  port: 5432
+  db: postgres
+  user: postgres
+  password: "JctOJIB145BJsz7ANJxMJvZrrX18DdjMkGYwH0P85hX1cLZ9yeMNUcj4kHntMYNW"
+

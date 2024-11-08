@@ -1,0 +1,5 @@
+apiVersion: v2
+name: geoip-service
+description: A service to perform GeoIP lookup using a GeoLite2 database.
+version: 0.1.0
+appVersion: "1.16.0"
