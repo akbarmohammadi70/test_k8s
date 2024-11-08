@@ -1,7 +1,7 @@
 replicaCount: 1
 name: app
 image:
-  repository: akbar1370/test_k8s:latest
+  repository: akbar1370/test_k8s
   pullPolicy: Always
   tag: latest
 
