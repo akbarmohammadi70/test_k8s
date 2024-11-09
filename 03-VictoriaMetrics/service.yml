@@ -2,19 +2,18 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    meta.helm.sh/release-name: vm
+    meta.helm.sh/release-name: prom-operator-01
     meta.helm.sh/release-namespace: monitoring
-  name: vm-grafana-n
+  name: prom-operator-01-grafana-node
   namespace: monitoring
 spec:
   ports:
-  - name: service
+  - name: http-web
     port: 80
     protocol: TCP
     targetPort: 3000
     nodePort: 30000
   selector:
-    app.kubernetes.io/instance: vm
+    app.kubernetes.io/instance: prom-operator-01
     app.kubernetes.io/name: grafana
-  type: NodePort
-
+  type:  NodePort

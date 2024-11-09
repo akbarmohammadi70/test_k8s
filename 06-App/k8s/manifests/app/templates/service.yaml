@@ -12,3 +12,19 @@ spec:
       targetPort: {{ .Values.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
   type: {{ .Values.service.type }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-clusterip
+  labels: 
+    app: app
+spec:
+  selector:
+    app: app  
+  ports:
+    - protocol: TCP
+      name: metrics 
+      port: 80
+      targetPort: 8000
+  type: ClusterIP

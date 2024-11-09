@@ -7,6 +7,9 @@ global:
     keyRef: {}
       # name: secret-license
       # key: license
+  cluster:
+    # -- K8s cluster domain suffix, uses for building storage pods' FQDN. Details are [here](https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/)
+    dnsDomain: cluster.local.
 
 # -- Resource full name suffix override
 nameOverride: ""
@@ -753,8 +756,7 @@ vmagent:
   # -- VMAgent annotations
   annotations: {}
   # -- Remote write configuration of VMAgent, allowed parameters defined in a [spec](https://docs.victoriametrics.com/operator/api#vmagentremotewritespec)
-  additionalRemoteWrites:
-    []
+  additionalRemoteWrites: []
     #- url: http://some-remote-write/api/v1/write
   # -- (object) Full spec for VMAgent CRD. Allowed values described [here](https://docs.victoriametrics.com/operator/api#vmagentspec)
   spec:
@@ -770,6 +772,18 @@ vmagent:
       # Do not store original labels in vmagent's memory by default. This reduces the amount of memory used by vmagent
       # but makes vmagent debugging UI less informative. See: https://docs.victoriametrics.com/vmagent/#relabel-debug
       promscrape.dropOriginalLabels: "true"
+    scrape_configs:
+      - job_name: "kubernetes"
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: namespace
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+          - source_labels: [__meta_kubernetes_namespace]
+            action: keep
+            regex: default|other-namespaces
   # -- (object) VMAgent ingress configuration
   ingress:
     enabled: false
@@ -953,8 +967,6 @@ kube-state-metrics:
         matchLabels:
           app.kubernetes.io/name: '{{ include "kube-state-metrics.name" (index .Subcharts "kube-state-metrics") }}'
           app.kubernetes.io/instance: '{{ include "vm.release" . }}'
-      namespaceSelector: 
-        any: true 
       endpoints:
         - port: http
           honorLabels: true
@@ -962,20 +974,6 @@ kube-state-metrics:
             - action: labeldrop
               regex: (uid|container_id|image_id)
       jobLabel: app.kubernetes.io/name
-
-kube-state-metrics-app:
-  enabled: true
-  vmScrape:
-    enabled: true
-    spec:
-      selector:
-        matchLabels:
-          app.kubernetes.io/name: 'app'
-      namespaceSelector: 
-        any: true
-      endpoints:
-        - port: "8000"  
-          path: "/metrics"  
 
 # -- Component scraping the kubelets
 kubelet:
@@ -1048,9 +1046,6 @@ kubeApiServer:
         matchLabels:
           component: apiserver
           provider: kubernetes
-
-
-
 
 # Component scraping the kube controller manager
 kubeControllerManager:
