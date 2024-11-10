@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: "https://github.com/akbarmohammadi70/test_k8s.git"
     targetRevision: master
-    path: "06-App/k8s/manifests/app"
+    path: "05-App/k8s/manifests/app"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: default
