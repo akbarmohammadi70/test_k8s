@@ -11,11 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
+    - uses: actions/checkout@v4    
     - name: Build Docker image
       run: |
         docker build . --file ./06-App/Dockerfile --tag akbar1370/test_k8s:latest
