@@ -85,7 +85,7 @@ The operator will manage the PostgreSQL setup, including backup, scaling, and up
 **Objective**: Automate the CI/CD pipeline for deploying a FastAPI application using GitHub Actions and Argo CD.
 
 ### Steps
-1. Set up a GitHub Actions workflow to build, test, and deploy the FastAPI application.
+1. Set up a GitHub Actions workflow to build, and deploy the FastAPI application.
 2. Configure Argo CD to manage the FastAPI deployment in the Kubernetes cluster.
 3. Push changes to trigger GitHub Actions for automated testing and deployment.
 
