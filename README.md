@@ -30,7 +30,7 @@ Ensure that Terraform has access to cloud provider credentials and is correctly 
 
 ### Steps
 1. **Kubespray Setup**:
-   - Clone the Kubespray repository and install dependencies.
+   - Clone the Project repository and install dependencies.
    - Prepare an inventory file for your cluster nodes.
    - Deploy the Kubernetes cluster using the Ansible playbook provided by Kubespray.
 
