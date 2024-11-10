@@ -17,7 +17,7 @@ jobs:
       run: |
         docker build . --file ./05-App/Dockerfile --tag akbar1370/test_k8s:latest
         echo "Image built successfully."
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u akbar1370 --password-stdin && docker push akbar1370/test_k8s:latest
+        echo "dckr_pat_IPXJo9r86AkTQS4gc62GMtcEElo" | docker login -u akbar1370 --password-stdin && docker push akbar1370/test_k8s:latest
     
     - name: Push Docker image
       run: |
