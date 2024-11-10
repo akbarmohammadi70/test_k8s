@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4    
     - name: Build Docker image
       run: |
-        docker build . --file ./06-App/Dockerfile --tag akbar1370/test_k8s:latest
+        docker build . --file ./05-App/Dockerfile --tag akbar1370/test_k8s:latest
         echo "Image built successfully."
 
     - name: Login to Docker Hub
