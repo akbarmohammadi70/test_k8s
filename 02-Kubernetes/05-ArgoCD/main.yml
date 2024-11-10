@@ -1,0 +1,14 @@
+---
+- name: Install 
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Deploy ArgoCD
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', 'install.yaml') }}"
+        state: present
+    - name: Deploy NodePort Service for ArgoCD
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', 'service.yaml') }}"
+        state: present

@@ -1,1 +1,0 @@
-https://www.opsramp.com/guides/prometheus-monitoring/prometheus-operator/

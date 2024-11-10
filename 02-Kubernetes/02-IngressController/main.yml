@@ -1,0 +1,10 @@
+---
+- name: Install 
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Deploy nginx ingress controller
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', 'deploy.yaml') }}"
+        state: present

@@ -1,0 +1,20 @@
+---
+- name: Install 
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Deploy metallb
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', '01-metallb-native.yaml') }}"
+        state: present
+
+    - name: Deploy ippool
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', '02-ippool.yml') }}"
+        state: present
+
+    - name: Deploy l2advertise
+      kubernetes.core.k8s:
+        definition: "{{ lookup('file', '03-l2advertisement.yaml') }}"
+        state: present
