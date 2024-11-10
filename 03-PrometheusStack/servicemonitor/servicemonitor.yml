@@ -4,7 +4,7 @@ metadata:
   name: fastapi-servicemonitor
   namespace: monitoring
   labels:
-    release: prom-operator-01  # مطابق برچسب Prometheus
+    release: prom-operator-01
 spec:
   selector:
     matchLabels:
