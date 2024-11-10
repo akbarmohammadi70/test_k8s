@@ -10,10 +10,10 @@ Before running the project, make sure you have the following installed on your s
 - Python 3.10 or higher
 - Docker (for running the project in isolated environments)
 - PostgreSQL
-
-Installation and Setup
 ```
-1. Install Dependencies
+### Installation and Setup
+
+### 1. Install Dependencies
 
 First, to install the project dependencies, navigate to the project directory and run the following command:
 
@@ -21,7 +21,7 @@ First, to install the project dependencies, navigate to the project directory an
 pip install -r requirements.txt
 ```
 
-2. PostgreSQL Database Setup
+### 2. PostgreSQL Database Setup
 
 Ensure that your PostgreSQL database is properly configured. You should set the following environment variables or use a `.env` file to configure them:
 
