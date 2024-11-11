@@ -1,4 +1,4 @@
-api_key             = "apikey 3b326873-1140-58dc-98c8-8232053b1da0"
+api_key             = "#"
 region              = "ir-thr-ba1"
 chosen_distro_name  = "ubuntu"
 chosen_name         = "22.04"
