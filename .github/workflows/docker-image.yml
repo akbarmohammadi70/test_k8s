@@ -2,23 +2,23 @@ name: Docker Image CI
 
 on:
   push:
-    branches: 
-      - "master"
+    branches:
+    - "master"
   pull_request:
-    branches: 
-      - "master"
+    branches:
+    - "master"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4    
+    - uses: actions/checkout@v4
     - name: Build Docker image
       run: |
         docker build . --file ./05-App/Dockerfile --tag akbar1370/test_k8s:latest
         echo "Image built successfully."
         echo "dckr_pat_IPXJo9r86AkTQS4gc62GMtcEElo" | docker login -u akbar1370 --password-stdin && docker push akbar1370/test_k8s:latest
-    
+
     - name: Push Docker image
       run: |
         #docker push akbar1370/test_k8s:latest
